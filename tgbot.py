@@ -17,6 +17,7 @@ def get_text_messages(message):
             bot.send_message(message.from_user.id, "Напиши пожалуйста номер того, что тебя не устраивает.");
     elif message.text == '1' or '2' or '3' or '4' or '5' or '6' or '7':
             bot.send_message(message.from_user.id, 'Я зафиксировал и отправил твои пожелания разработчику.');
+            bot.reply_to(message,"Этот пункт не устраивает пользователя.");
     else:
         bot.send_message(message.from_user.id, "Я тебя не понимаю. Напиши /schedule.")
 
@@ -24,6 +25,7 @@ def get_text_messages(message):
     def callback_worker(call):
         if call.data == "yes":
             bot.send_message(call.message.chat.id, 'Отлично! Я отправлю твой ответ разработчику.');
+            bot.send_message(1944402724, 'Пользователя устраивает расписание');
         elif call.data == "no":
             ...
             bot.send_message(call.message.chat.id, 'Напиши команду /report')
