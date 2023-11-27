@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.express as px
 
 # Incorporate data
-df = pd.read_csv('https://raw.githubusercontent.com/IvanMA4HEB/dashboard/main/dara.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/IvanMA4HEB/TGBOTPROJECT/main/data.csv')
 
 # Initialize the app
 app = Dash(__name__)
@@ -14,12 +14,11 @@ app = Dash(__name__)
 app.layout = html.Div([
     html.Div(children='Выступления'),
     html.Hr(),
-    dcc.RadioItems(options=['ветер день', 'Температура день'], value='ветер день', id='controls-and-radio-item'),
+    dcc.RadioItems(options=['Время начала', 'Вместимость площадки'], value='Время начала', id='controls-and-radio-item'),
     dash_table.DataTable(data=df.to_dict('records'), page_size=10),
     dcc.Graph(figure={}, id='controls-and-graph'),
-    dcc.Graph(figure=px.line(df, x='id города', y='давление день')),
-    dcc.Graph(figure=px.pie(df, values='id города', names='облачность день')),
-    dcc.Graph(figure=px.bar(df, x='ветер день', y='id города'))
+    dcc.Graph(figure=px.pie(df, values='Номер', names='Тип выступления')),
+    dcc.Graph(figure=px.bar(df, x='Площадка', y='Вместимость площадки'))
 ])
 
 # Add controls to build the interaction
@@ -28,7 +27,7 @@ app.layout = html.Div([
     Input(component_id='controls-and-radio-item', component_property='value')
 )
 def update_graph(col_chosen):
-    fig = px.histogram(df, x='id города', y=col_chosen, histfunc='avg')
+    fig = px.histogram(df, x='Номер', y=col_chosen, histfunc='avg')
     return fig
 
 # Run the app
