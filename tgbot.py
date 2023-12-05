@@ -11,7 +11,7 @@ def get_text_messages(message):
       keyboard.add(key_yes); #добавляем кнопку в клавиатуру
       key_no= types.InlineKeyboardButton(text='Нет', callback_data='no');
       keyboard.add(key_no);
-      question = 'Вот дащборд с расписанием []. Тебя оно устраивает?';
+      question = 'Вот дащборд с расписанием [https://700c-188-130-255-192.ngrok-free.app ]. Тебя оно устраивает?';
       bot.send_message(message.from_user.id, text=question, reply_markup=keyboard)
     elif message.text == '/report':
             bot.send_message(message.from_user.id, "Напиши пожалуйста номер того, что тебя не устраивает.");
